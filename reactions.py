@@ -16,14 +16,23 @@ class MyClient(discord.Client):
       return
 
     guild = client.get_guild(payload.guild_id)
-    if payload.emoji.name == '🥶':
-      role = discord.utils.get(guild.roles, name = ':cold_face:')
+    if payload.emoji.name == '🍏':
+      role = discord.utils.get(guild.roles, name = 'senior')
       await payload.member.add_roles(role)
-    elif payload.emoji.name == '😹':
-      role = discord.utils.get(guild.roles, name = ':joy_cat:')
+    elif payload.emoji.name == '📘':
+      role = discord.utils.get(guild.roles, name = 'junior')
+      await payload.mem0ber.add_roles(role)
+    elif payload.emoji.name == '💖':
+      role = discord.utils.get(guild.roles, name = 'sophomore')
       await payload.member.add_roles(role)
-    elif payload.emoji.name == '😭':
-      role = discord.utils.get(guild.roles, name = ':sob:')
+    elif payload.emoji.name == '🐠':
+      role = discord.utils.get(guild.roles, name = 'freshmen')
+      await payload.member.add_roles(role)
+    elif payload.emoji.name == '🐯':
+      role = discord.utils.get(guild.roles, name = 'consol')
+      await payload.member.add_roles(role)
+    elif payload.emoji.name == '🐱':
+      role = discord.utils.get(guild.roles, name = 'purple school')
       await payload.member.add_roles(role)
 
   async def on_raw_reaction_remove(self, payload):
@@ -34,15 +43,30 @@ class MyClient(discord.Client):
     guild = client.get_guild(payload.guild_id)
     member = guild.get_member(payload.user_id)
 
-    if payload.emoji.name == '🥶':
-      role = discord.utils.get(guild.roles, name = ':cold_face:')
+    if payload.emoji.name == '🍏':
+      role = discord.utils.get(guild.roles, name = 'senior')
       await member.remove_roles(role)
-    elif payload.emoji.name == '😹':
-      role = discord.utils.get(guild.roles, name = ':joy_cat:')
+    elif payload.emoji.name == '📘':
+      role = discord.utils.get(guild.roles, name = 'junior')
       await member.remove_roles(role)
-    elif payload.emoji.name == '😭':
-      role = discord.utils.get(guild.roles, name = ':sob:')
+    elif payload.emoji.name == '💖':
+      role = discord.utils.get(guild.roles, name = 'sophomore')
       await member.remove_roles(role)
+    elif payload.emoji.name == '🐠':
+      role = discord.utils.get(guild.roles, name = 'freshmen')
+      await member.remove_roles(role)
+    elif payload.emoji.name == '🐯':
+      role = discord.utils.get(guild.roles, name = 'consol')
+      await member.remove_roles(role)
+    elif payload.emoji.name == '🐱':
+      role = discord.utils.get(guild.roles, name = 'purple school')
+      await member.remove_roles(role)
+
+  async def on_message(self, message):
+    if message.author == client.user:
+      return
+    channel = message.channel
+    await channel.send("**" + "React to recieve your roles:" + "**" + "\n🍏senior\n📘junior\n💖sophomore\n🐠freshmen\n🐯consol\n🐱purple school")
       
     
 intents = discord.Intents.default()
